@@ -172,8 +172,8 @@ public class Player : MonoBehaviour, IDamageable
         try
         {
             //horizontal input for left/right
-            float move = Input.GetAxisRaw("Horizontal");
-            //float move = CrossPlatformInputManager.GetAxis("Horizontal");
+            //float move = Input.GetAxisRaw("Horizontal");
+            float move = CrossPlatformInputManager.GetAxis("Horizontal");
 
             _grounded = IsGrounded();
 
