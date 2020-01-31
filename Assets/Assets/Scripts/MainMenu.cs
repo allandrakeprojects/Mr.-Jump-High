@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour
     public Player player;
     private Animator _anim;
     private SpriteRenderer _playerSprite;
+    public GameObject about;
 
     // GameOver
     public GameObject levelGameOver;
@@ -46,29 +47,18 @@ public class MainMenu : MonoBehaviour
         levelManager.LoadMainMenuAfterDelay();
     }
 
-    public void PLAYGAME()
+    public void PLAYNEWGAME()
     {
-        PlayerPrefs.SetInt("heart", 1000);
+        PlayerPrefs.SetInt("GAME_MODE", 0);
         PlayerPrefs.Save();
-        if (PlayerPrefs.GetInt("heart") == 0)
-        {
-            messageHeartText.text = "Not Enough Heart!";
-        }
-        else
-        {
-            if (!detectStart)
-            {
-                detectStart = true;
-                //messageHeartText.text = "";
-                //int getHeart = PlayerPrefs.GetInt("heart") - 1;
-                //Debug.Log(getHeart.ToString());
-                //PlayerPrefs.SetInt("heart", getHeart);
-                //PlayerPrefs.Save();
-                //Debug.Log(getHeart.ToString());
-                //heartCountText.text = getHeart.ToString();
-                levelManager.LoadGameAfterDelay();
-            }
-        }
+        levelManager.LoadGameAfterDelay();
+    }
+
+    public void PLAYLOADGAME()
+    {
+        PlayerPrefs.SetInt("GAME_MODE", 1);
+        PlayerPrefs.Save();
+        levelManager.LoadGameAfterDelay();
     }
 
     private bool detectRetry = false;
@@ -139,35 +129,40 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetInt("level_selected", 1);
         PlayerPrefs.Save();
-        PLAYGAME();
     }
 
     public void OpenLevel_2()
     {
         PlayerPrefs.SetInt("level_selected", 2);
         PlayerPrefs.Save();
-        PLAYGAME();
     }
 
     public void OpenLevel_3()
     {
         PlayerPrefs.SetInt("level_selected", 3);
         PlayerPrefs.Save();
-        PLAYGAME();
     }
 
     public void OpenLevel_4()
     {
         PlayerPrefs.SetInt("level_selected", 4);
         PlayerPrefs.Save();
-        PLAYGAME();
     }
 
     public void OpenLevel_5()
     {
         PlayerPrefs.SetInt("level_selected", 5);
         PlayerPrefs.Save();
-        PLAYGAME();
+    }
+
+    public void OpenAbout()
+    {
+        about.SetActive(true);
+    }
+
+    public void CloseAbout()
+    {
+        about.SetActive(false);
     }
 
     public void UpdateScore()
